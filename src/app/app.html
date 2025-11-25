@@ -3,5 +3,18 @@
     <h1 class="text-5xl font-bold">Hello Developers</h1>
     <app-variables />
     <app-data-binding />
+    <p class="my-5">{{ appCount() }}</p>
+    <button
+      class="cursor-pointer bg-green-500 px-4 py-2 rounded-md text-white font-semibold"
+      (click)="increment()"
+    >
+      Increment
+    </button>
+    <button
+      class="cursor-pointer bg-red-500 px-4 py-2 rounded-md text-white font-semibold mt-5"
+      (click)="decrement()"
+    >
+      Decrement
+    </button>
   </div>
 </main>
