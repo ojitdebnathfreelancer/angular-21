@@ -1,0 +1,47 @@
+<p>data-binding works!</p>
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <span>{{ courseName }}</span>
+      </td>
+      <td>
+        <strong>{{ courseName }}</strong>
+      </td>
+      <td>
+        <strong>{{ city }}</strong>
+      </td>
+    </tr>
+    <!-- interpolation  -->
+    <tr>
+      <td>
+        <input id="city" type="text" [value]="city" />
+      </td>
+      <td>
+        <p [class]="className">This is present</p>
+      </td>
+    </tr>
+    <!-- property binding  -->
+    <tr>
+      <td>
+        <button (click)="welcomeMeg()">Show Message</button>
+      </td>
+      <td>
+        <select (change)="oncStateChange()" name="city" id="city">
+          <option value="Dhaka">Dhaka</option>
+          <option value="Syleht">Sylhe</option>
+          <option value="Chittagong">Chittagong</option>
+        </select>
+      </td>
+    </tr>
+    <!-- event binding  -->
+    <tr>
+      <td>
+        <input type="text" [(ngModel)]="courseName" />
+      </td>
+      <td>
+        <button (click)="changeCourseName('JavaScript')">Change Course Name</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
