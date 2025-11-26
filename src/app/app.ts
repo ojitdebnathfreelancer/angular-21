@@ -1,10 +1,11 @@
 import { Component, signal } from '@angular/core';
 import { Variables } from './components/variables/variables';
 import { DataBinding } from './components/data-binding/data-binding';
+import { User } from './components/user/user';
 
 @Component({
   selector: 'app-root',
-  imports: [Variables, DataBinding],
+  imports: [Variables, DataBinding, User],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
