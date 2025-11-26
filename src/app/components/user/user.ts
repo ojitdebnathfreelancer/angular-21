@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { Users } from './users';
 import { CommonModule } from '@angular/common';
 
@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class User implements OnInit {
   constructor(private _http: Users) {}
-  usersList: any;
+  usersList = signal<any[]>([]);
   errorMessage?: string;
 
   ngOnInit(): void {
@@ -23,7 +23,7 @@ export class User implements OnInit {
 
   usersData() {
     this._http.getData().subscribe({
-      next: (res) => (this.usersList = res),
+      next: (res) => this.usersList.set(res ?? []),
       error: (err) => (this.errorMessage = err.message),
     });
   }

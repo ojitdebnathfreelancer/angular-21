@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-signal',
@@ -7,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrl: './signal.css',
 })
 export class Signal {
+  // courseName: string = 'Angular 21';
 
+  courseName = signal('Angular 21');
+
+  constructor() {
+    setTimeout(() => {
+      this.courseName.set('react js');
+    }, 3000);
+  }
 }
