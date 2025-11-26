@@ -11,15 +11,20 @@ import { CommonModule } from '@angular/common';
 export class User implements OnInit {
   constructor(private _http: Users) {}
   usersList: any;
+  errorMessage?: string;
 
   ngOnInit(): void {
     this.usersData();
+
+    // fetch('https://jsonplaceholder.typicode.com/users')
+    //   .then((r) => r.json())
+    //   .then((d) => console.log('Manual fetch:', d));
   }
 
   usersData() {
-    this._http.getData().subscribe((res) => {
-      this.usersList = res;
-      console.log(this.usersList);
+    this._http.getData().subscribe({
+      next: (res) => (this.usersList = res),
+      error: (err) => (this.errorMessage = err.message),
     });
   }
 }
