@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './user.css',
 })
 export class User implements OnInit {
-  constructor(private _http: Users) {}
+  constructor(private usersService: Users) {}
   usersList = signal<any[]>([]);
   errorMessage?: string;
 
@@ -22,7 +22,7 @@ export class User implements OnInit {
   }
 
   usersData() {
-    this._http.getData().subscribe({
+    this.usersService.getData().subscribe({
       next: (res) => this.usersList.set(res ?? []),
       error: (err) => (this.errorMessage = err.message),
     });

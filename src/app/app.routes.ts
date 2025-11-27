@@ -5,11 +5,16 @@ import { Variables } from './components/variables/variables';
 import { User } from './components/user/user';
 import { Dashboard } from './components/dashboard/dashboard';
 import { NotFound } from './components/not-found/not-found';
+import { Login } from './components/login/login';
 
 export const routes: Routes = [
   {
     path: '',
     component: Dashboard,
+  },
+  {
+    path: 'login',
+    component: Login,
   },
   {
     path: 'databinding',
