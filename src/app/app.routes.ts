@@ -6,6 +6,7 @@ import { User } from './components/user/user';
 import { Dashboard } from './components/dashboard/dashboard';
 import { NotFound } from './components/not-found/not-found';
 import { Login } from './components/login/login';
+import { ControlFlow } from './components/control-flow/control-flow';
 
 export const routes: Routes = [
   {
@@ -31,6 +32,10 @@ export const routes: Routes = [
   {
     path: 'user',
     component: User,
+  },
+  {
+    path: 'control-flow',
+    component: ControlFlow,
   },
   {
     path: '**',

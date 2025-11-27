@@ -1,3 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+
+@layer base {
+  input {
+    @apply border border-gray-400 rounded-lg px-2 outline-none;
+  }
+}

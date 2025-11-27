@@ -1,0 +1,77 @@
+<table class="table-auto p-2">
+  <tr>
+    <td class="p-2">
+      <label> <input type="checkbox" [(ngModel)]="isOfferCode" /> Do your have offer code </label>
+    </td>
+    @if (isOfferCode) {
+    <td>
+      <input type="text" placeholder="Enter Offer Code" />
+    </td>
+    }
+  </tr>
+  <tr>
+    <td class="p-2">
+      @if(isSuccess()){
+      <p class="bg-green-500 text-white px-2 rounded-sm">Success</p>
+      }@else {
+      <p class="bg-red-500 text-white px-2 rounded-sm">Error</p>
+      }
+    </td>
+    <td>
+      <button
+        (click)="toggle()"
+        class="bg-teal-500 text-white font-medium px-2 py-1 rounded-md cursor-pointer"
+      >
+        Toggle
+      </button>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <input type="text" placeholder="%" class="input-base" [(ngModel)]="studentMarks" />
+    </td>
+    <td>
+      @if(studentMarks > 70){
+      <p class="text-green-500"><strong>Student Has A Grade</strong></p>
+      } @else if (studentMarks < 70 && studentMarks > 50) {
+      <p class="text-blue-500">Student Has B Grade</p>
+      }@else if (studentMarks < 50 && studentMarks > 35) {
+      <p class="text-teal-500">Student Has c Grade</p>
+      }@else { @if(studentMarks === 0 || !studentMarks ){
+      <p class="text-fuchsia-500">Enter Marks</p>
+      }@else {
+      <p class="text-red-500">Student Failed</p>
+      } }
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <ul>
+        @for (item of offerList; track item) {
+        <li>{{ item }}</li>
+        }
+      </ul>
+    </td>
+  </tr>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>City</td>
+      <td>Active</td>
+    </tr>
+  </thead>
+  <tbody>
+    @for (employee of employeeList; track employee.name) {
+    <tr>
+      <td>{{ employee.name }}</td>
+      <td>{{ employee.city }}</td>
+      <td class="{{ employee.isActive ? 'text-green-600' : 'text-red-500' }} font-bold">
+        {{ employee.isActive ? 'Yes' : 'No' }}
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
