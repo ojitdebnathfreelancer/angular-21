@@ -1,0 +1,15 @@
+<div>
+  <p [ngClass]="myClassName">dynamic-css-class works!</p>
+  <input type="text" [(ngModel)]="myClassName" />
+  <button
+    [ngClass]="isActive === true ? 'bg-green-600' : 'bg-red-600'"
+    (click)="isActive = !isActive"
+  >
+    CTA
+  </button>
+  <p class="{{ bgTeal }} {{ productPrice > 500 ? 'text-red-500' : 'text-white' }}">
+    Price $ {{ productPrice }}
+  </p>
+  <div [ngStyle]="{ 'background-color': divBackColor }">Div 22</div>
+  <input type="text" [(ngModel)]="divBackColor" />
+</div>
