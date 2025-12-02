@@ -1,10 +1,11 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { Users } from './users';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './user.html',
   styleUrl: './user.css',
 })
@@ -12,6 +13,37 @@ export class User implements OnInit {
   constructor(private usersService: Users) {}
   usersList = signal<any[]>([]);
   errorMessage?: string;
+  isCreateUser: boolean = false;
+
+  formToggle() {
+    this.isCreateUser = !this.isCreateUser;
+  }
+
+  userObj = {
+    id: 0,
+    name: '',
+    username: '',
+    email: '',
+    password: '',
+    city: '',
+    state: '',
+  };
+
+  onSubmit() {
+    console.log('Form Submitted:', this.userObj);
+  }
+
+  onReset() {
+    this.userObj = {
+      id: 0,
+      name: '',
+      username: '',
+      email: '',
+      password: '',
+      city: '',
+      state: '',
+    };
+  }
 
   ngOnInit(): void {
     this.usersData();

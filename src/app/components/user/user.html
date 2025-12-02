@@ -1,9 +1,168 @@
 <div class="container mx-auto px-4 py-8">
   <!-- Header -->
-  <div class="mb-6">
-    <h1 class="text-3xl font-bold text-gray-800">Users Management</h1>
-    <p class="text-gray-600 mt-1">Manage and view all registered users</p>
+  <div class="mb-6 flex justify-between">
+    <div>
+      <h1 class="text-3xl font-bold text-gray-800">Users Management</h1>
+      <p class="text-gray-600 mt-1">Manage and view all registered users</p>
+    </div>
+
+    <button
+      (click)="formToggle()"
+      type="button"
+      class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200 cursor-pointer"
+    >
+      {{ isCreateUser ? 'View List' : 'Create User' }}
+    </button>
   </div>
+
+  @if(isCreateUser){
+  <!-- User Registration Form -->
+  <div class="min-h-screen bg-gray-100 py-8 px-4">
+    <div class="max-w-2xl mx-auto">
+      <!-- Form Card -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <!-- Header -->
+        <div class="bg-linear-to-r from-blue-600 to-purple-600 px-6 py-4">
+          <h2 class="text-2xl font-bold text-white">User Registration</h2>
+          <p class="text-blue-100 text-sm mt-1">Fill in the details to create a new user</p>
+        </div>
+
+        <!-- Form -->
+        <form class="p-6" #userForm="ngForm" (ngSubmit)="onSubmit()">
+          <!-- Name -->
+          <div class="mb-4">
+            <label for="name" class="block text-gray-700 text-sm font-semibold mb-2">
+              Full Name <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              #name="ngModel"
+              [(ngModel)]="userObj.name"
+              required
+              minlength="5"
+              placeholder="Enter full name"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+            />
+            @if (name.touched || name.dirty) {
+            <div>
+              @if(name.errors?.['required']){
+              <p class="text-red-500">Name is required!</p>
+              }@else if (name.errors?.['minlength']) {
+              <p class="text-red-500">Min Cha 5!</p>
+              }
+            </div>
+            }
+          </div>
+
+          <!-- Username -->
+          <div class="mb-4">
+            <label for="username" class="block text-gray-700 text-sm font-semibold mb-2">
+              Username <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              [(ngModel)]="userObj.username"
+              required
+              placeholder="Enter username"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+            />
+          </div>
+
+          <!-- Email -->
+          <div class="mb-4">
+            <label for="email" class="block text-gray-700 text-sm font-semibold mb-2">
+              Email Address <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              [(ngModel)]="userObj.email"
+              required
+              email
+              placeholder="Enter email address"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+            />
+          </div>
+
+          <!-- Password -->
+          <div class="mb-4">
+            <label for="password" class="block text-gray-700 text-sm font-semibold mb-2">
+              Password <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              [(ngModel)]="userObj.password"
+              required
+              minlength="6"
+              placeholder="Enter password (min 6 characters)"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+            />
+          </div>
+
+          <!-- City and State in Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <!-- City -->
+            <div>
+              <label for="city" class="block text-gray-700 text-sm font-semibold mb-2">
+                City <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="city"
+                name="city"
+                [(ngModel)]="userObj.city"
+                required
+                placeholder="Enter city"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+              />
+            </div>
+
+            <!-- State -->
+            <div>
+              <label for="state" class="block text-gray-700 text-sm font-semibold mb-2">
+                State <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="state"
+                name="state"
+                [(ngModel)]="userObj.state"
+                required
+                placeholder="Enter state"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200"
+              />
+            </div>
+          </div>
+
+          <!-- Form Actions -->
+          <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t border-gray-200">
+            <button
+              type="submit"
+              [disabled]="userForm.invalid"
+              class="flex-1 bg-linear-to-r from-blue-600 to-purple-600 text-white font-semibold py-3 px-6 rounded-lg hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Submit
+            </button>
+            <button
+              type="button"
+              (click)="onReset()"
+              class="flex-1 bg-gray-200 text-gray-700 font-semibold py-3 px-6 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 transition duration-200"
+            >
+              Reset
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  }@else {
 
   <!-- Error Message -->
   @if(errorMessage) {
@@ -33,11 +192,6 @@
             placeholder="Search users..."
             class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
-          <button
-            class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200"
-          >
-            Add User
-          </button>
         </div>
       </div>
     </div>
@@ -206,5 +360,5 @@
       Add First User
     </button>
   </div>
-  }
+  } }
 </div>
