@@ -9,6 +9,7 @@ import { Login } from './components/login/login';
 import { ControlFlow } from './components/control-flow/control-flow';
 import { DynamicCssClass } from './components/dynamic-css-class/dynamic-css-class';
 import { Layout } from './components/layout/layout';
+import { authGuard } from './guard/auth-guard';
 
 export const routes: Routes = [
   {
@@ -31,6 +32,7 @@ export const routes: Routes = [
       {
         path: 'dashboard/databinding',
         component: DataBinding,
+        canActivate: [authGuard],
       },
       {
         path: 'dashboard/signal',

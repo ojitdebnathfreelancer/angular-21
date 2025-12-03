@@ -42,6 +42,7 @@ export class Login {
 
     const credentials = this.loginModel();
     if (credentials.email === 'admin@gmail.com' && credentials.password === '12345678') {
+      localStorage.setItem('loginName', 'admin@gmail.com');
       this.router.navigateByUrl('/dashboard');
       // this.loginModel.set(this.initialValue);
     } else {
