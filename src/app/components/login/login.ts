@@ -14,11 +14,13 @@ interface LoginData {
   styleUrl: './login.css',
 })
 export class Login {
-  loginModel = signal<LoginData>({
+  initialValue = {
     email: '',
     password: '',
     remember: false,
-  });
+  };
+
+  loginModel = signal<LoginData>(this.initialValue);
 
   loginForm = form(this.loginModel, (schema) => {
     required(schema.email, { message: 'Please enter email' });
@@ -37,5 +39,6 @@ export class Login {
 
     const credentials = this.loginModel();
     console.log('Logging in with:', credentials);
+    this.loginModel.set(this.initialValue);
   }
 }
