@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Alert } from '../../reusableComponents/alert/alert';
 import { TabList } from '../../reusableComponents/tab-list/tab-list';
+import { Highlight } from '../../directives/highlight';
 
 @Component({
   selector: 'app-user',
-  imports: [CommonModule, FormsModule, Alert, TabList],
+  imports: [CommonModule, FormsModule, Alert, TabList, Highlight],
   templateUrl: './user.html',
   styleUrl: './user.css',
 })
