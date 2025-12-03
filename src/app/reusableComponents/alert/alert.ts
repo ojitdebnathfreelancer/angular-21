@@ -11,6 +11,6 @@ export class Alert {
   @Input() isLoading: boolean = false;
 
   constructor() {
-    console.log(this.isLoading, 'alert');
+    // console.log(this.isLoading, 'alert');
   }
 }

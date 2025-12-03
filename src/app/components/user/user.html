@@ -15,6 +15,7 @@
     </button>
   </div>
 
+  <app-tab-list [tabList]="['Create', 'List']" (onTabChange)="onSelectTab($event)" />
   @if(isCreateUser){
   <!-- User Registration Form -->
   <div class="min-h-screen bg-gray-100 py-8 px-4">

@@ -1,0 +1,11 @@
+<div class="flex gap-2">
+  @for (tab of tabList; track $index) {
+  <button
+    (click)="onTabSelect(tab)"
+    type="button"
+    class="cursor-pointer bg-blue-600 text-white px-2 py-1 rounded-md"
+  >
+    {{ tab }}
+  </button>
+  }
+</div>
