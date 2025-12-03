@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { email, Field, form, minLength, required } from '@angular/forms/signals';
+import { Router } from '@angular/router';
 
 interface LoginData {
   email: string;
@@ -20,6 +21,8 @@ export class Login {
     remember: false,
   };
 
+  constructor(private router: Router) {}
+
   loginModel = signal<LoginData>(this.initialValue);
 
   loginForm = form(this.loginModel, (schema) => {
@@ -38,7 +41,11 @@ export class Login {
     }
 
     const credentials = this.loginModel();
-    console.log('Logging in with:', credentials);
-    this.loginModel.set(this.initialValue);
+    if (credentials.email === 'admin@gmail.com' && credentials.password === '12345678') {
+      this.router.navigateByUrl('/dashboard');
+      // this.loginModel.set(this.initialValue);
+    } else {
+      alert('Wrong Credentials');
+    }
   }
 }

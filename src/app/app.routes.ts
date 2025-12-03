@@ -8,39 +8,51 @@ import { NotFound } from './components/not-found/not-found';
 import { Login } from './components/login/login';
 import { ControlFlow } from './components/control-flow/control-flow';
 import { DynamicCssClass } from './components/dynamic-css-class/dynamic-css-class';
+import { Layout } from './components/layout/layout';
 
 export const routes: Routes = [
   {
     path: '',
-    component: Dashboard,
+    redirectTo: 'login',
+    pathMatch: 'full',
   },
   {
     path: 'login',
     component: Login,
   },
   {
-    path: 'databinding',
-    component: DataBinding,
-  },
-  {
-    path: 'signal',
-    component: Signal,
-  },
-  {
-    path: 'variables',
-    component: Variables,
-  },
-  {
-    path: 'user',
-    component: User,
-  },
-  {
-    path: 'control-flow',
-    component: ControlFlow,
-  },
-  {
-    path: 'dynamic-css-class',
-    component: DynamicCssClass,
+    path: '',
+    component: Layout,
+    children: [
+      {
+        path: 'dashboard',
+        component: Dashboard,
+      },
+      {
+        path: 'dashboard/databinding',
+        component: DataBinding,
+      },
+      {
+        path: 'dashboard/signal',
+        component: Signal,
+      },
+      {
+        path: 'dashboard/variables',
+        component: Variables,
+      },
+      {
+        path: 'dashboard/user',
+        component: User,
+      },
+      {
+        path: 'dashboard/control-flow',
+        component: ControlFlow,
+      },
+      {
+        path: 'dashboard/dynamic-css-class',
+        component: DynamicCssClass,
+      },
+    ],
   },
   {
     path: '**',
