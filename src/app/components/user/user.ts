@@ -2,10 +2,11 @@ import { Component, OnInit, signal } from '@angular/core';
 import { Users } from './users';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Alert } from '../../reusableComponents/alert/alert';
 
 @Component({
   selector: 'app-user',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, Alert],
   templateUrl: './user.html',
   styleUrl: './user.css',
 })
@@ -14,6 +15,7 @@ export class User implements OnInit {
   usersList = signal<any[]>([]);
   errorMessage?: string;
   isCreateUser: boolean = false;
+  isLoading = false;
 
   formToggle() {
     this.isCreateUser = !this.isCreateUser;
@@ -47,16 +49,19 @@ export class User implements OnInit {
 
   ngOnInit(): void {
     this.usersData();
-
-    // fetch('https://jsonplaceholder.typicode.com/users')
-    //   .then((r) => r.json())
-    //   .then((d) => console.log('Manual fetch:', d));
   }
 
   usersData() {
+    this.isLoading = true;
     this.usersService.getData().subscribe({
-      next: (res) => this.usersList.set(res ?? []),
-      error: (err) => (this.errorMessage = err.message),
+      next: (res) => {
+        this.usersList.set(res ?? []);
+        this.isLoading = false;
+      },
+      error: (err) => {
+        this.isLoading = false;
+        this.errorMessage = err.message;
+      },
     });
   }
 }
