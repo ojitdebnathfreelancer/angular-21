@@ -16,7 +16,7 @@ export class User implements OnInit {
   usersList = signal<any[]>([]);
   errorMessage?: string;
   isCreateUser: boolean = false;
-  isLoading = false;
+  isLoading = signal<boolean>(false);
 
   formToggle() {
     this.isCreateUser = !this.isCreateUser;
@@ -57,14 +57,14 @@ export class User implements OnInit {
   }
 
   usersData() {
-    this.isLoading = true;
+    this.isLoading.set(true);
     this.usersService.getData().subscribe({
       next: (res) => {
         this.usersList.set(res ?? []);
-        this.isLoading = false;
+        this.isLoading.set(false);
       },
       error: (err) => {
-        this.isLoading = false;
+        this.isLoading.set(false);
         this.errorMessage = err.message;
       },
     });

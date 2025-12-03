@@ -165,8 +165,8 @@
   </div>
   }@else {
   <!-- loading Message -->
-  @if(isLoading){
-  <app-alert [isLoading]="isLoading" />
+  @if(isLoading()){
+  <app-alert [isLoading]="isLoading()" />
   }
   <!-- Error, list and No Data Handle -->
   @else {
