@@ -58,6 +58,17 @@ export class BatchMaster {
     });
   }
 
+  deleteBatchMasterSubscribe(id: number) {
+    this.batchService.deleteBatch(id).subscribe({
+      next: (res) => {
+        this.success();
+      },
+      error: (err) => {
+        alert(err?.error?.message);
+      },
+    });
+  }
+
   onSubmit() {
     if (this.isEditMode) {
       this.updateBatchMasterSubscribe({
@@ -87,7 +98,7 @@ export class BatchMaster {
 
   onDelete(batchId: number) {
     if (confirm('Are you sure you want to delete this batch?')) {
-      this.batchList.set(this.batchList().filter((b) => b.batchId !== batchId));
+      this.deleteBatchMasterSubscribe(batchId);
     }
   }
   // delete function
