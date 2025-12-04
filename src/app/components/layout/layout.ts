@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -7,4 +7,10 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   templateUrl: './layout.html',
   styleUrl: './layout.css',
 })
-export class Layout {}
+export class Layout {
+  router = inject(Router);
+  logout() {
+    localStorage.clear();
+    this.router.navigateByUrl('/');
+  }
+}
