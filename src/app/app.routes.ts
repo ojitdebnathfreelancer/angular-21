@@ -10,6 +10,7 @@ import { ControlFlow } from './components/control-flow/control-flow';
 import { DynamicCssClass } from './components/dynamic-css-class/dynamic-css-class';
 import { Layout } from './components/layout/layout';
 import { authGuard } from './guard/auth-guard';
+import { BatchMaster } from './components/batch-master/batch-master';
 
 export const routes: Routes = [
   {
@@ -53,6 +54,10 @@ export const routes: Routes = [
       {
         path: 'dashboard/dynamic-css-class',
         component: DynamicCssClass,
+      },
+      {
+        path: 'dashboard/batch-master',
+        component: BatchMaster,
       },
     ],
   },
