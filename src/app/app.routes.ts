@@ -11,6 +11,7 @@ import { DynamicCssClass } from './components/dynamic-css-class/dynamic-css-clas
 import { Layout } from './components/layout/layout';
 import { authGuard } from './guard/auth-guard';
 import { BatchMaster } from './components/batch-master/batch-master';
+import { ProjectCompetation } from './components/project-competation/project-competation';
 
 export const routes: Routes = [
   {
@@ -58,6 +59,10 @@ export const routes: Routes = [
       {
         path: 'dashboard/batch-master',
         component: BatchMaster,
+      },
+      {
+        path: 'dashboard/project-competition',
+        component: ProjectCompetation,
       },
     ],
   },
