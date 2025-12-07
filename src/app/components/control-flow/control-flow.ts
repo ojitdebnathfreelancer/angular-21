@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Master } from '../../service/master';
 
 @Component({
   selector: 'app-control-flow',
@@ -22,6 +23,13 @@ export class ControlFlow {
     { name: 'ccc', city: 'Dinajpure', isActive: false },
     { name: 'ddd', city: 'Chittagonj', isActive: true },
   ];
+
+  masterSrv = inject(Master);
+
+  constructor() {
+    const result = this.masterSrv.addTowNum(12, 15);
+  }
+
   toggle() {
     this.isSuccess.update((prv) => !prv);
   }
